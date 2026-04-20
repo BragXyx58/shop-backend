@@ -54,6 +54,21 @@ services:
       - postgres
     networks:
       - ecommerce-network
+  
+  user-service:
+    build:
+      context: ./services
+      dockerfile: UserService/Dockerfile
+    container_name: user-service
+    ports:
+      - "5004:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=ecommerce_db;Username=admin;Password=adminpassword
+    depends_on:
+      - postgres
+    networks:
+      - ecommerce-network
 
   product-service:
     build:

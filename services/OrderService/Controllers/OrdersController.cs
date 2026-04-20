@@ -25,7 +25,7 @@ namespace OrderService.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateOrder([FromBody] Order order)
         {
-            order.Status = "Paid";
+            order.Status = "Pending";
             order.CreatedAt = DateTime.UtcNow;
 
             _context.Orders.Add(order);

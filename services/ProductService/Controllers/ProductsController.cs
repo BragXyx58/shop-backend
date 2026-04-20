@@ -104,5 +104,25 @@ namespace ProductService.Controllers
 
             return NoContent();
         }
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateProduct(int id, [FromBody] Product request)
+        {
+            var product = await _context.Products.FindAsync(id);
+            if (product == null) return NotFound();
+
+            product.Name = request.Name;
+            product.Description = request.Description;
+            product.Price = request.Price;
+            product.Category = request.Category;
+            product.ImageUrl = request.ImageUrl;
+
+            await _context.SaveChangesAsync();
+
+            
+            await _cache.RemoveAsync("products_all");
+            await _cache.RemoveAsync($"product_{id}");
+
+            return Ok(new { message = "Товар оновлено" });
+        }
     }
 }
