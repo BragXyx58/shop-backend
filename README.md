@@ -2,6 +2,7 @@
 4 сервиса: Auth, Product, Order, Notification (Worker).
 
 ===========НАСТРОЙКА============
+
 Запуск всей инфраструктуры (7 контейнеров):
 docker-compose up -d --build
 
@@ -11,6 +12,7 @@ docker-compose up -d --build
 docker-compose down -v
 
 ===============ИСПОЛЬЗОВАНИЕ===========
+
 Swagger API (Тестирование маршрутов):
 Auth: http://localhost:5001/swagger
 Products: http://localhost:5002/swagger
